@@ -1,0 +1,34 @@
+﻿<Window x:Class="ChronoTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ChronoTask" Height="450" Width="870">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="#FFDADADA">
+            <Button Content="Add Project" Click="AddProjectButton_Click"/>
+            <Button Content="Update Project" Click="UpdateProjectButton_Click"/>
+            <Button Content="Delete Project" Click="DeleteProjectButton_Click"/>
+            <ListBox x:Name="ProjectList" DisplayMemberPath="Name" SelectionChanged="ProjectList_SelectionChanged"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <Button Content="Add Task" Click="AddTaskButton_Click"/>
+            <Button Content="Update Task" Click="UpdateTaskButton_Click"/>
+            <Button Content="Delete Task" Click="DeleteTaskButton_Click"/>
+            <ListView x:Name="TaskList" Height="373">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="200"/>
+                        <GridViewColumn Header="Start Time" DisplayMemberBinding="{Binding StartTime}" Width="150"/>
+                        <GridViewColumn Header="End Time" DisplayMemberBinding="{Binding EndTime}" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
