@@ -4,19 +4,28 @@
         xmlns:local="clr-namespace:ChronoTask"
 
 
-    Title="Add Task" Height="400" Width="400">
-    <Grid>
-        <StackPanel>
-            <TextBox x:Name="TaskNameTextBox" Margin="10" Text="Task Name" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-            <TextBox x:Name="TaskDescriptionTextBox" Margin="10" Text="Task Description" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-            <TextBlock Text="Start Time:" Margin="10"/>
-            <DatePicker x:Name="StartTimePicker" Margin="10"/>
-            
-            <local:TimePicker x:Name="StartTimeTimePicker" Margin="10"/>
-            <TextBlock Text="End Time:" Margin="10"/>
-            <DatePicker x:Name="EndTimePicker" Margin="10"/>
-            <local:TimePicker x:Name="EndTimeTimePicker" Margin="10"/>
-            <Button Content="Save" Click="SaveButton_Click" Margin="10"/>
-        </StackPanel>
-    </Grid>
+    Title="Add Task" Height="450" Width="420">
+
+
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
+                <GradientStop Color="#00FFFF" Offset="1"/>
+                <GradientStop Color="#000033" Offset="0"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <StackPanel>
+                <TextBox x:Name="TaskNameTextBox" Margin="10" Text="Task Name" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="Transparent"/>
+                <TextBox x:Name="TaskDescriptionTextBox" Margin="10" Text="Task Description" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="Transparent"/>
+                <TextBlock Text="Start Time:" Margin="10" Foreground="White"/>
+                <DatePicker x:Name="StartTimePicker" Margin="10" BorderBrush="Transparent"/>
+                <local:TimePicker x:Name="StartTimeTimePicker" Margin="77 10 0 0" />
+                <TextBlock Text="End Time:" Margin="10" Foreground="White"/>
+                <DatePicker x:Name="EndTimePicker" Margin="10" BorderBrush="Transparent"/>
+                <local:TimePicker x:Name="EndTimeTimePicker" Margin="77 10 0 10" />
+                <Button Content="Save" Click="SaveButton_Click" Margin="10" Style="{StaticResource ButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

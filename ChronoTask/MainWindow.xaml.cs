@@ -20,7 +20,8 @@ namespace ChronoTask
         {
             InitializeComponent();
             DatabaseHelper.InitializeDatabase();
-
+            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
             LoadProjects();
         }
 
@@ -75,7 +76,9 @@ namespace ChronoTask
                     DatabaseHelper.AddTask(selectedProject.ProjectId, taskName, taskDescription, startTime, endTime);
                     LoadTasks(selectedProject.ProjectId); // Refresh the task list
                 }
+                
             }
+
         }
 
 
@@ -121,7 +124,10 @@ namespace ChronoTask
                 int projectId = ((Project)ProjectList.SelectedItem).ProjectId;
                 LoadTasks(projectId);
             }
+            
         }
+
+       
     }
 
 

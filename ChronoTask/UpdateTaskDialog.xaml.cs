@@ -15,6 +15,7 @@ namespace ChronoTask
         public UpdateTaskDialog(Task task)
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
             TaskNameTextBox.Text = task.Name;
             TaskDescriptionTextBox.Text = task.Description;
             TaskStartDatePicker.SelectedDate = task.StartTime.HasValue ? task.StartTime.Value.Date : (DateTime?)null;

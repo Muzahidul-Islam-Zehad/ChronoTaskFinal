@@ -4,9 +4,9 @@
              Height="30" Width="200">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="HoursTextBox" Width="50" Margin="5" Text="HH" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-            <TextBlock Text=":" VerticalAlignment="Center"/>
-            <TextBox x:Name="MinutesTextBox" Width="50" Margin="5" Text="MM" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+            <TextBox x:Name="HoursTextBox" Width="50" Margin="5" Text="HH" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="Transparent"/>
+            <TextBlock Text=":" VerticalAlignment="Center" Foreground="White"/>
+            <TextBox x:Name="MinutesTextBox" Width="50" Margin="5" Text="MM" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="Transparent"/>
         </StackPanel>
     </Grid>
 </UserControl>
