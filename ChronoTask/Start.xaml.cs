@@ -23,10 +23,8 @@ namespace ChronoTask
             timer.Stop();
 
            
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-
-            
+           SignIn signIn = new SignIn();
+            signIn.Show();
             this.Close();
         }
     }

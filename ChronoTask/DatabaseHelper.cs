@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SQLite;
 
 public static class DatabaseHelper
@@ -26,7 +27,13 @@ public static class DatabaseHelper
                     EndTime TEXT,
                     FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId)
                 )";
-
+            string createUserTableQuery = @"
+            CREATE TABLE IF NOT EXISTS Users (
+                UserId INTEGER PRIMARY KEY AUTOINCREMENT,
+                Email TEXT NOT NULL,
+                UserName TEXT NOT NULL,
+                UserPassword TEXT NOT NULL
+            )";
             using (var command = new SQLiteCommand(createProjectsTableQuery, connection))
             {
                 command.ExecuteNonQuery();
@@ -35,6 +42,56 @@ public static class DatabaseHelper
             using (var command = new SQLiteCommand(createTasksTableQuery, connection))
             {
                 command.ExecuteNonQuery();
+            }
+            using(var command = new SQLiteCommand(createUserTableQuery, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+
+    public static void AddUser(string Email, string userName, string userPassword)
+    {
+        using (var connection = new SQLiteConnection(ConnectionString))
+        {
+            connection.Open();
+            string query = "INSERT INTO Users (Email, UserName, UserPassword) VALUES (@Email, @UserName, @UserPassword)";
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", Email);
+                command.Parameters.AddWithValue("@UserName", userName);
+                command.Parameters.AddWithValue("@UserPassword", userPassword);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public static bool ValidateUser(string Email, string password)
+    {
+        using (var connection = new SQLiteConnection(ConnectionString))
+        {
+            connection.Open();
+            string query = "SELECT COUNT(1) FROM Users WHERE Email = @Email AND UserPassword = @UserPassword";
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", Email);
+                command.Parameters.AddWithValue("@UserPassword", password);
+                return Convert.ToInt32(command.ExecuteScalar()) > 0;
+            }
+        }
+    }
+
+    public static bool EmailExists(string email)
+    {
+        using (var connection = new SQLiteConnection(ConnectionString))
+        {
+            connection.Open();
+            string query = "SELECT COUNT(1) FROM Users WHERE Email = @Email";
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", email);
+                return Convert.ToInt32(command.ExecuteScalar()) > 0;
             }
         }
     }
